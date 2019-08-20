@@ -1,0 +1,14 @@
+<?php
+include_once('config.php');
+$DATABASE_HOST=DATABASE_HOST;//数据库地址
+$DATABASE_USER=DATABASE_USER;//数据库用户
+$DATABASE_PASS=DATABASE_PASS;//数据库密码
+$DATABASE_DB=DATABASE_DB;//选择的数据库
+$DATABASE_ERROR=DATABASE_ERROR;
+$conn=@mysql_connect($DATABASE_HOST,$DATABASE_USER,$DATABASE_PASS);
+if(!$conn){
+    die($DATABASE_ERROR);
+}
+mysql_select_db($DATABASE_DB);
+mysql_set_charset('utf8');
+?>
