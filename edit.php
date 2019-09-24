@@ -100,7 +100,7 @@ if($_POST){
               <label for="t_id">链接分类：</label>
               <select name="t_id" id="t_id" class="form-control">
                 <?php foreach($types as $v){?>
-                <option value="<?php echo $v['t_id'];?>" <?php $outData['t_id']==$v['t_id']?'selected':'';?>><?php echo $v['t_name'];?></option>
+                <option value="<?php echo $v['t_id'];?>" <?php echo $outData['t_id']==$v['t_id']?'selected':'';?>><?php echo $v['t_name'];?></option>
                 <?php }?>
               </select>
             </div>
