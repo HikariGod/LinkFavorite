@@ -80,8 +80,8 @@ if($_POST){
   </head>
 
   <body>
-    <center><a class="title" href="<?php echo $indexPage;?>"><h1>修改<?php echo $t=='link'?'链接':'分类';?><h1></a></center>
-    <center><h4><a class="btn btn-default" href="<?php echo $indexPage;?>">返回</a></h4></center>
+    <center><a class="title" href="<?php echo $indexPage;?>"><h1>编辑<?php echo $t=='link'?'链接':'分类';?><h1></a></center>
+    <center><h4><a class="btn btn-default" href="<?php echo $indexPage.'?edit';?>">返回</a></h4></center>
     <br>
     <div class="container">
       <div class="row">
