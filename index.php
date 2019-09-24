@@ -32,7 +32,7 @@ if(isset($_GET['del'])&&!empty($_GET['id'])){
     $res = (new Db())->delData('link_favorites','f_id='.$_GET['id']);
   }
   if($res){
-    show_msg('删除成功', $indexPage);
+    show_msg('删除成功', $indexPage.'?del');
   }else{
     show_msg('数据执行有误，请重新删除');
   }

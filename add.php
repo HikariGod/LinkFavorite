@@ -24,7 +24,7 @@ if($_POST){
       );
       $res= (new Db())->addData('link_favorites',$data);
     }else{
-      $res = false;
+      show_msg('链接格式不对！记得带上http://或者https://！');
     }
   }elseif($t == 'type'){
     $data = array(

@@ -41,7 +41,7 @@ if($_POST){
     $res = (new Db())->updateData('link_favorites_type', $data, 't_id='.$id);
   }
   if($res){
-    show_msg('修改成功', $indexPage);
+    show_msg('修改成功', $indexPage.'?edit');
   }else{
     show_msg('数据出现错误');
   }
