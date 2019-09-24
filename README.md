@@ -6,7 +6,7 @@
 ## 使用方法
 
 1. 将这个项目下载/克隆到你的服务器中
-2. 将文件夹里的LFavorites.sql导入到你的数据库中
+2. 将文件夹里的LinkFavorites.sql导入到你的数据库中
 3. 配置include文件夹里的config.php配置文件
 
 > 就这样简单
