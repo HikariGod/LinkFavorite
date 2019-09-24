@@ -6,13 +6,21 @@ if(!$check){
   show_msg('你没有权限这样做', $indexPage);
 }
 
-if(isset($_GET['t'])){
+if(isset($_GET['t']) && isset($_GET['id'])){
   $t = $_GET['t'];
+  $id = $_GET['id'];
 }else{
   die('数据传输错误');
 }
 
 $types = (new Db())->getAllBySql("SELECT * FROM link_favorites_type");
+
+if($t == 'link'){
+    $outData = (new Db())->getOnceBySql("SELECT * FROM link_favorites WHERE f_id={$id}");
+}elseif($t == 'type'){
+    $outData = (new Db())->getOnceBySql("SELECT * FROM link_favorites_type WHERE t_id={$id}");
+}
+
 if($_POST){
   if($t == 'link'){
     if(preg_match('/^(http:\/\/|https:\/\/)/',$_POST['f_url'])){
@@ -22,7 +30,7 @@ if($_POST){
         't_id' => $_POST['t_id'],
         'f_addtime' => time()
       );
-      $res= (new Db())->addData('link_favorites',$data);
+      $res= (new Db())->updateData('link_favorites', $data, 'f_id='.$id);
     }else{
       $res = false;
     }
@@ -30,10 +38,10 @@ if($_POST){
     $data = array(
       't_name' => $_POST['t_name']
     );
-    $res = (new Db())->addData('link_favorites_type',$data);
+    $res = (new Db())->updateData('link_favorites_type', $data, 't_id='.$id);
   }
   if($res){
-    show_msg('添加成功', $indexPage);
+    show_msg('修改成功', $indexPage);
   }else{
     show_msg('数据出现错误');
   }
@@ -68,11 +76,11 @@ if($_POST){
         color: skyblue;
       }
     </style>
-    <title>Hikari-网站收藏夹添加</title>
+    <title>Hikari-网站收藏夹编辑</title>
   </head>
 
   <body>
-    <center><a class="title" href="<?php echo $indexPage;?>"><h1>添加<?php echo $t=='link'?'链接':'分类';?><h1></a></center>
+    <center><a class="title" href="<?php echo $indexPage;?>"><h1>修改<?php echo $t=='link'?'链接':'分类';?><h1></a></center>
     <center><h4><a class="btn btn-default" href="<?php echo $indexPage;?>">返回</a></h4></center>
     <br>
     <div class="container">
@@ -82,27 +90,27 @@ if($_POST){
             <?php if($t=='link'){?>
             <div class="form-group">
               <label for="f_name">链接名称：</label>
-              <input name="f_name" type="f_name" class="form-control" id="f_name" placeholder="请输入链接名称">
+              <input name="f_name" type="f_name" value="<?php echo $outData['f_name'];?>" class="form-control" id="f_name" placeholder="请输入链接名称">
             </div>
             <div class="form-group">
               <label for="f_url">链接地址：</label>
-              <input name="f_url" type="f_url" class="form-control" id="f_url" placeholder="请输入链接地址">
+              <input name="f_url" type="f_url" value="<?php echo $outData['f_url'];?>" class="form-control" id="f_url" placeholder="请输入链接地址">
             </div>
             <div class="form-group">
               <label for="t_id">链接分类：</label>
               <select name="t_id" id="t_id" class="form-control">
                 <?php foreach($types as $v){?>
-                <option value="<?php echo $v['t_id'];?>"><?php echo $v['t_name'];?></option>
+                <option value="<?php echo $v['t_id'];?>" <?php $outData['t_id']==$v['t_id']?'selected':'';?>><?php echo $v['t_name'];?></option>
                 <?php }?>
               </select>
             </div>
             <?php }elseif($t=='type'){?>
             <div class="form-group">
               <label for="t_name">分类名称：</label>
-              <input name="t_name" type="t_name" class="form-control" id="t_name" placeholder="请输入分类名称">
+              <input name="t_name" type="t_name" value="<?php echo $outData['t_name'];?>" class="form-control" id="t_name" placeholder="请输入分类名称">
             </div>
             <?php }?>
-            <button type="submit" class="btn btn-default">添加</button>
+            <button type="submit" class="btn btn-default">修改</button>
           </div>
         </form>
       </div>

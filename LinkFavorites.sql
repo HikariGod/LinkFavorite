@@ -17,11 +17,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tt_favorites`
+-- Database: `link_favorites`
 --
 
-CREATE DATABASE IF NOT EXISTS `tt_favorites` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `tt_favorites`;
+CREATE DATABASE IF NOT EXISTS `link_favorites` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `link_favorites`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +29,7 @@ USE `tt_favorites`;
 -- 表的结构 `tt_favorites`
 --
 
-CREATE TABLE IF NOT EXISTS `tt_favorites` (
+CREATE TABLE IF NOT EXISTS `link_favorites` (
   `f_id` smallint(5) NOT NULL COMMENT '收藏链接ID',
   `f_name` text NOT NULL COMMENT '收藏链接名字',
   `f_url` text NOT NULL COMMENT '收藏链接',
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tt_favorites` (
 -- 转存表中的数据 `tt_favorites`
 --
 
-INSERT INTO `tt_favorites` (`f_id`, `f_name`, `f_url`, `t_id`, `f_addtime`) VALUES
+INSERT INTO `link_favorites` (`f_id`, `f_name`, `f_url`, `t_id`, `f_addtime`) VALUES
 (1, 'Google 翻译', 'https://translate.google.cn', 1, 1546272000),
 (2, 'Rat Blog超实用博客', 'https://www.moerats.com', 2, 1546272000),
 (3, '时间戳转换工具', 'https://tool.lu/timestamp/', 3, 1546272000),
@@ -53,7 +53,7 @@ INSERT INTO `tt_favorites` (`f_id`, `f_name`, `f_url`, `t_id`, `f_addtime`) VALU
 -- 表的结构 `tt_favorites_type`
 --
 
-CREATE TABLE IF NOT EXISTS `tt_favorites_type` (
+CREATE TABLE IF NOT EXISTS `link_favorites_type` (
   `t_id` smallint(5) NOT NULL COMMENT '收藏类型ID',
   `t_name` text NOT NULL COMMENT '收藏类型名字'
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='链接收藏类型表';
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tt_favorites_type` (
 -- 转存表中的数据 `tt_favorites_type`
 --
 
-INSERT INTO `tt_favorites_type` (`t_id`, `t_name`) VALUES
+INSERT INTO `link_favorites_type` (`t_id`, `t_name`) VALUES
 (1, '普通'),
 (2, '教程'),
 (3, '工具'),
@@ -75,13 +75,13 @@ INSERT INTO `tt_favorites_type` (`t_id`, `t_name`) VALUES
 --
 -- Indexes for table `tt_favorites`
 --
-ALTER TABLE `tt_favorites`
+ALTER TABLE `link_favorites`
   ADD PRIMARY KEY (`f_id`);
 
 --
 -- Indexes for table `tt_favorites_type`
 --
-ALTER TABLE `tt_favorites_type`
+ALTER TABLE `link_favorites_type`
   ADD PRIMARY KEY (`t_id`);
 
 --
@@ -91,12 +91,12 @@ ALTER TABLE `tt_favorites_type`
 --
 -- AUTO_INCREMENT for table `tt_favorites`
 --
-ALTER TABLE `tt_favorites`
+ALTER TABLE `link_favorites`
   MODIFY `f_id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT '收藏链接ID',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tt_favorites_type`
 --
-ALTER TABLE `tt_favorites_type`
+ALTER TABLE `link_favorites_type`
   MODIFY `t_id` smallint(5) NOT NULL AUTO_INCREMENT COMMENT '收藏类型ID',AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
