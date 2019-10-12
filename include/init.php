@@ -32,7 +32,7 @@ if ($verifyType == 'google'){
     $verifyHtml = '<input type="text" class="form-control" placeholder="请输入CODE" name="code">&nbsp;<input type="submit" class="btn btn-default" value="提交">';
 
 }elseif ($verifyType == 'password'){
-    $password = PASSWORD;
+    $password = md5(PASSWORD);
 
     $code = isset($_COOKIE['code']) ? $_COOKIE['code'] : '';
     $check = ($password == $code);

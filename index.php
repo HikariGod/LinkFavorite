@@ -38,7 +38,12 @@ if(isset($_GET['del'])&&!empty($_GET['id'])){
   }
 }
 if(isset($_POST['code'])){
-  setcookie('code', $_POST['code'], time()+(EXPIRED_TIME*30));
+  if ($verifyType == 'password'){
+    $cookieCode = md5($_POST['code']);
+  }else{
+    $cookieCode = $_POST['code'];
+  }
+  setcookie('code', $cookieCode, time()+(EXPIRED_TIME*30));
   echo '<script>location.href="'.$indexPage.'";</script>';
 }
 
