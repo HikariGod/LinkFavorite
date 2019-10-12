@@ -38,7 +38,7 @@ if(isset($_GET['del'])&&!empty($_GET['id'])){
   }
 }
 if(isset($_POST['code'])){
-  setcookie('code', $_POST['code'], time()+1800);
+  setcookie('code', $_POST['code'], time()+(EXPIRED_TIME*30));
   echo '<script>location.href="'.$indexPage.'";</script>';
 }
 
