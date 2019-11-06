@@ -18,6 +18,9 @@ require 'common.php';
 //初始化数据库类
 require 'Db.class.php';
 
+//初始化模板类
+require 'view.php';
+
 //验证分类
 $verifyType = strtolower(VERIFY_TYPE);
 
@@ -50,3 +53,11 @@ if ($verifyType == 'google'){
 $indexPage = INDEX_PAGE;
 $addPage = ADD_PAGE;
 $editPage = EDIT_PAGE;
+
+//初始化模板
+define('INVIEW', true);
+
+$config = array(
+    'tpl_ext' => '.tpl'
+);
+$view = new view($config);
