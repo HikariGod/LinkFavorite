@@ -37,6 +37,70 @@ function show_msg($msg,$url=''){
     die();
 }
 
+//花式弹窗
+function alert($msg, $url='', $style = 1) {
+    if ($url) {
+        $href = "location.href='{$url}';";
+    } else {
+        $href = 'window.history.go(-1)';
+    }
+
+    echo <<<EOT
+<html>
+<head>
+<script src="static/js/jquery-1.12.4.js"></script>
+
+<!-- Syalert Lib -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" />
+<link rel="stylesheet" href="static/syalert/syalert.min.css" />
+<script src="static/syalert/syalert.min.js"></script>
+<script>
+function ok(id){
+	//syalert.syhide(id);
+	var url = "$url";
+	if (typeof (url) == "undefined" || url == null || url === ""){
+	    window.history.go(-1);
+	}else{
+	    location.href = url;
+	}
+}
+</script>
+</head>
+
+<body>
+<!-- 提示弹窗 -->
+<div class="sy-alert sy-alert-tips animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="tips" sy-mask="false" id="alert">
+    <div class="sy-content">$msg</div>
+</div>
+
+<div class="sy-alert sy-alert-alert animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="alert" sy-mask="true" id="alert2">
+  <div class="sy-title">提示</div>
+  <div class="sy-content">$msg</div>
+  <div class="sy-btn">
+    <button onClick="ok('alert2')">确定</button>
+  </div>
+</div>
+</body>
+</html>
+EOT;
+
+    echo '<script>';
+    echo "syalert.syopen('alert2');";
+    echo '</script>';
+}
+
+/*function only_alert($msg, $url='', $style = 1) {
+    if ($url) {
+        $href = "location.href='{$url}';";
+    } else {
+        $href = 'window.history.go(-1)';
+    }
+
+    echo '<script>';
+    echo "syalert.syopen('alert2');";
+    echo '</script>';
+}*/
+
 //显示模板（快捷函数）
 function show($tpl){
     global $view;

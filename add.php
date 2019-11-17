@@ -2,8 +2,10 @@
 
 require 'include/init.php';
 
+$check = CHECK;
+
 if(!$check){
-  show_msg('你没有权限这样做', $indexPage);
+    alert('你没有权限这样做', $indexPage);
 }
 
 if(isset($_GET['t'])){
@@ -24,7 +26,7 @@ if($_POST){
       );
       $res= (new Db())->addData('link_favorites',$data);
     }else{
-      show_msg('链接格式不对！记得带上http://或者https://！');
+        alert('链接格式不对！记得带上http://或者https://！');
     }
   }elseif($t == 'type'){
     $data = array(
@@ -33,9 +35,9 @@ if($_POST){
     $res = (new Db())->addData('link_favorites_type',$data);
   }
   if($res){
-    show_msg('添加成功', $indexPage);
+      alert('添加成功', $indexPage);
   }else{
-    show_msg('数据出现错误');
+      alert('数据出现错误');
   }
 }
 

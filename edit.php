@@ -2,8 +2,10 @@
 
 require 'include/init.php';
 
+$check = CHECK;
+
 if(!$check){
-  show_msg('你没有权限这样做', $indexPage);
+    alert('你没有权限这样做', $indexPage);
 }
 
 if(isset($_GET['t']) && isset($_GET['id'])){
@@ -41,9 +43,9 @@ if($_POST){
     $res = (new Db())->updateData('link_favorites_type', $data, 't_id='.$id);
   }
   if($res){
-    show_msg('修改成功', $indexPage.'?edit');
+      alert('修改成功', $indexPage.'?edit');
   }else{
-    show_msg('数据出现错误');
+      alert('数据出现错误');
   }
 }
 

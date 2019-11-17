@@ -15,11 +15,11 @@
                 {if $t=='link'}
                     <div class="form-group">
                         <label for="f_name">链接名称：</label>
-                        <input name="f_name" type="f_name" value="{outData.f_name}" class="form-control" id="f_name" placeholder="请输入链接名称">
+                        <input name="f_name" type="f_name" value="{outData.f_name}" class="form-control" id="f_name" placeholder="请输入链接名称" required>
                     </div>
                     <div class="form-group">
                         <label for="f_url">链接地址：</label>
-                        <input name="f_url" type="f_url" value="{outData.f_url}" class="form-control" id="f_url" placeholder="请输入链接地址">
+                        <input name="f_url" type="f_url" value="{outData.f_url}" class="form-control" id="f_url" placeholder="请输入链接地址" required>
                     </div>
                     <div class="form-group">
                         <label for="t_id">链接分类：</label>

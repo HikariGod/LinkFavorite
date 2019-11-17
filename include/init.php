@@ -49,6 +49,8 @@ if ($verifyType == 'google'){
 
 }
 
+define('CHECK', $check);
+
 //页面名
 $indexPage = INDEX_PAGE;
 $addPage = ADD_PAGE;
