@@ -49,6 +49,15 @@ if ($verifyType == 'google'){
 
 }
 
+//验证续时
+if(isset($_COOKIE['code']) && $check){
+    $resetCode = $_COOKIE['code'];
+    if ($verifyType == 'google'){
+        $resetCode = $ga->getCode(SECRET);
+    }
+    setcookie('code', $resetCode, time()+(EXPIRED_TIME*30));
+}
+
 define('CHECK', $check);
 
 //页面名
