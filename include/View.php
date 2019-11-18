@@ -67,7 +67,7 @@ class view {
         );
         $replacements = array(
             "&lt;?php \\1 ?&gt;",
-            '<?php include $view->load(\\1); ?>',
+            '<?php include $view->load("\\1"); ?>',
             "<?php if(\\1): ?>",
             "<?php else: ?>",
             "<?php elseif(\\1): ?>",
