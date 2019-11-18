@@ -24,13 +24,6 @@ class Model
     {
         $this->db = (new Db());
         $this->prefix = DATABASE_PREFIX;
-    }
-
-    /**
-     * 如果表名不指定，则获取类名（继承）
-     */
-    private function checkTableName()
-    {
         if(empty($this->tableName)){
             $tableName = str_replace("Model", "", static::class); //去除Model后缀（UserDataModel => UserData）
             $tableName = strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $tableName)); //处理驼峰为小写下划线（UserData => user_data）
@@ -230,7 +223,6 @@ class Model
      */
     public function select()
     {
-        $this->checkTableName();
         $sql = 'SELECT '.$this->field.' FROM `'.$this->prefix.$this->tableName.'`'.$this->join.$this->where.$this->order.$this->limit;
         if($this->fetchSql) return $sql;
         return $this->db->getAllBySql($sql);
@@ -242,7 +234,6 @@ class Model
      */
     public function find()
     {
-        $this->checkTableName();
         $sql = 'SELECT '.$this->field.' FROM `'.$this->prefix.$this->tableName.'`'.$this->join.$this->where.$this->order.' LIMIT 1';
         if($this->fetchSql) return $sql;
         return $this->db->getOnceBySql($sql);
@@ -255,7 +246,6 @@ class Model
      */
     public function insert($data = [])
     {
-        $this->checkTableName();
         $sql = 'INSERT INTO `'.$this->prefix.$this->tableName;
         $sql .= '` (`'.implode('`,`',array_keys($data)).'`)VALUES';
         $sql .= "('".implode("','",$data)."')";
@@ -270,7 +260,6 @@ class Model
      */
     public function insertAll($data = [])
     {
-        $this->checkTableName();
         $sql = 'INSERT INTO `'.$this->prefix.$this->tableName;
         $i = 0;
         foreach ($data as $key => $value){
@@ -292,7 +281,6 @@ class Model
      */
     public function update($data)
     {
-        $this->checkTableName();
         $sql = 'UPDATE `'.$this->prefix.$this->tableName.'` SET ';
         foreach($data as $k=>$v){
             $sql .= '`'.$k."`='".$v."',";
@@ -314,7 +302,6 @@ class Model
             $this->where = '';
             $this->where($where);
         }
-        $this->checkTableName();
         $sql = 'DELETE FROM `'.$this->prefix.$this->tableName.'`'.$this->where;
         if($this->fetchSql) return $sql;
         return $this->db->query($sql);
