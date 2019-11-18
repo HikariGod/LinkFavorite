@@ -48,6 +48,9 @@ function alert($msg, $url='', $style = 1) {
     echo <<<EOT
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="static/js/jquery-1.12.4.js"></script>
 
 <!-- Syalert Lib -->
@@ -88,18 +91,6 @@ EOT;
     echo "syalert.syopen('alert2');";
     echo '</script>';
 }
-
-/*function only_alert($msg, $url='', $style = 1) {
-    if ($url) {
-        $href = "location.href='{$url}';";
-    } else {
-        $href = 'window.history.go(-1)';
-    }
-
-    echo '<script>';
-    echo "syalert.syopen('alert2');";
-    echo '</script>';
-}*/
 
 //显示模板（快捷函数）
 function show($tpl){

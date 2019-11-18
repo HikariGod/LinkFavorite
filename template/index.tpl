@@ -23,10 +23,9 @@
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <a href="{indexPage}" class="list-group-item active">快速导航分类</a>
             {foreach types:$v3}
-                {if $del}
-                    <!-- {@getUrl()}id={v3.t_id}&type=true -->
+                {if $del && $check}
                     <a class="list-group-item list-group-item-danger" typeid="{v3.t_id}" onclick="setid('type', this);syalert.syopen('alert2')" href="#">{v3.t_name} --- 删除</a>
-                {elseif $edit}
+                {elseif $edit && $check}
                     <a class="list-group-item list-group-item-info" href="{editPage}?id={v3.t_id}&t=type">{v3.t_name} --- 编辑</a>
                 {elseif isset($_GET['type'])}
                     <a href="{@getUrl('type')}type={v3.t_id}" class="list-group-item">{v3.t_name}</a>
@@ -48,10 +47,9 @@
             <a id="{v1.t_id}" href="{@getUrl('type')}type={v1.t_id}" class="list-group-item active">{v1.t_name}</a>
             {foreach links:$v2}
                 {if $v1['t_id']==$v2['t_id']}
-                    {if $del}
-                        <!-- {@getUrl()}id={v2.f_id} -->
+                    {if $del && $check}
                         <a class="list-group-item list-group-item-danger" linkid="{v2.f_id}" onclick="setid('link', this);syalert.syopen('alert1')" href="#">{v2.f_name} --- 删除</a>
-                    {elseif $edit}
+                    {elseif $edit && $check}
                         <a class="list-group-item list-group-item-info" href="{editPage}?id={v2.f_id}&t=link">{v2.f_name} --- 编辑</a>
                     {else}
                         <a class="list-group-item" {target} href="{v2.f_url}">{v2.f_name}</a>

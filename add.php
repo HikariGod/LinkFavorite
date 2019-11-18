@@ -6,12 +6,14 @@ $check = CHECK;
 
 if(!$check){
     alert('你没有权限这样做', $indexPage);
+    die();
 }
 
 if(isset($_GET['t'])){
   $t = $_GET['t'];
 }else{
-  die('数据传输错误');
+    alert('数据传输错误', $indexPage);
+    die();
 }
 
 $types = (new Db())->getAllBySql("SELECT * FROM link_favorites_type");
