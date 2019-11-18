@@ -21,6 +21,16 @@ class Db{
     }
 
     /**
+     * 查询
+     * @param $sql
+     * @return bool|mysqli_result
+     */
+    public function query($sql)
+    {
+        return mysqli_query($this->db, $sql);
+    }
+
+    /**
      * 获取多条数据
      * @param string $sql sql语句
      * @return array

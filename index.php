@@ -2,8 +2,8 @@
 
 require 'include/init.php';
 
-$links = (new Db())->getAllBySql("SELECT * FROM link_favorites");
-$types = (new Db())->getAllBySql("SELECT * FROM link_favorites_type");
+$links = (new Model())->table('favorites')->select();
+$types = (new Model())->table('favorites_type')->select();
 
 $target = TARGET_BLANK?'target="_blank"':'';
 
@@ -30,10 +30,10 @@ if(isset($_GET['del'])&&!empty($_GET['id'])){
   $res = false;
   if(isset($_GET['type'])){
     if($_GET['type'] == true){
-      $res = (new Db())->delData('link_favorites_type','t_id='.$_GET['id']);
+      $res = (new Model())->table('favorites_type')->delete(['t_id' => $_GET['id']]);
     }
   }else{
-    $res = (new Db())->delData('link_favorites','f_id='.$_GET['id']);
+    $res = (new Model())->table('favorites')->delete(['f_id' => $_GET['id']]);
   }
   if($res){
       alert('删除成功', $indexPage.'?del');

@@ -7,6 +7,7 @@ define('DATABASE_HOST','localhost'); //数据库地址
 define('DATABASE_USER','root'); //数据库用户
 define('DATABASE_PASS','root'); //数据库密码
 define('DATABASE_DB','link_favorites'); //数据库名
+define('DATABASE_PREFIX','link_'); //数据库前缀
 
 /*===身份验证设置===*/
 /**

@@ -16,7 +16,7 @@ if(isset($_GET['t'])){
     die();
 }
 
-$types = (new Db())->getAllBySql("SELECT * FROM link_favorites_type");
+$types = (new Model())->table('favorites_type')->select();
 if($_POST){
   if($t == 'link'){
     if(preg_match('/^(http:\/\/|https:\/\/)/',$_POST['f_url'])){
@@ -26,7 +26,7 @@ if($_POST){
         't_id' => $_POST['t_id'],
         'f_addtime' => time()
       );
-      $res= (new Db())->addData('link_favorites',$data);
+      $res = (new Model())->table('favorites')->insert($data);
     }else{
         alert('链接格式不对！记得带上http://或者https://！');
     }
@@ -34,7 +34,7 @@ if($_POST){
     $data = array(
       't_name' => $_POST['t_name']
     );
-    $res = (new Db())->addData('link_favorites_type',$data);
+    $res = (new Model())->table('favorites_type')->insert($data);
   }
   if($res){
       alert('添加成功', $indexPage);

@@ -17,12 +17,12 @@ if(isset($_GET['t']) && isset($_GET['id'])){
     die();
 }
 
-$types = (new Db())->getAllBySql("SELECT * FROM link_favorites_type");
+$types = (new Model())->table('favorites_type')->select();
 
 if($t == 'link'){
-    $outData = (new Db())->getOnceBySql("SELECT * FROM link_favorites WHERE f_id={$id}");
+    $outData = (new Model)->table('favorites')->where(['f_id' => $id])->find();
 }elseif($t == 'type'){
-    $outData = (new Db())->getOnceBySql("SELECT * FROM link_favorites_type WHERE t_id={$id}");
+    $outData = (new Model)->table('favorites_type')->where(['t_id' => $id])->find();
 }
 
 if($_POST){
@@ -34,7 +34,7 @@ if($_POST){
         't_id' => $_POST['t_id'],
         'f_addtime' => time()
       );
-      $res= (new Db())->updateData('link_favorites', $data, 'f_id='.$id);
+      $res = (new Model())->table('favorites')->where(['f_id' => $id])->update($data);
     }else{
       $res = false;
     }
@@ -42,7 +42,7 @@ if($_POST){
     $data = array(
       't_name' => $_POST['t_name']
     );
-    $res = (new Db())->updateData('link_favorites_type', $data, 't_id='.$id);
+    $res = (new Model())->table('favorites_type')->where(['t_id' => $id])->update($data);
   }
   if($res){
       alert('修改成功', $indexPage.'?edit');
